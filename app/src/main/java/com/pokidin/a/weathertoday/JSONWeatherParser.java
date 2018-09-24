@@ -1,4 +1,7 @@
-package com.pokidin.a.weathertoday.model;
+package com.pokidin.a.weathertoday;
+
+import com.pokidin.a.weathertoday.model.Location;
+import com.pokidin.a.weathertoday.model.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -6,7 +9,7 @@ import org.json.JSONObject;
 
 public class JSONWeatherParser {
 
-    public static Weather getWeather(String data) throws JSONException{
+    public static Weather getWeather(String data) throws JSONException {
         Weather weather = new Weather();
 
         JSONObject jsonObject = new JSONObject(data);
@@ -48,19 +51,19 @@ public class JSONWeatherParser {
         return weather;
     }
 
-    private static JSONObject getObject(String tagName, JSONObject jsonObject) throws JSONException{
+    private static JSONObject getObject(String tagName, JSONObject jsonObject) throws JSONException {
         return jsonObject.getJSONObject(tagName);
     }
 
-    private static String getString (String tagName, JSONObject jsonObject) throws JSONException{
+    private static String getString(String tagName, JSONObject jsonObject) throws JSONException {
         return jsonObject.getString(tagName);
     }
 
-    private static float getFloat(String tagName, JSONObject jsonObject) throws JSONException{
+    private static float getFloat(String tagName, JSONObject jsonObject) throws JSONException {
         return (float) jsonObject.getDouble(tagName);
     }
 
-    private static int getInt(String tagName, JSONObject jsonObject) throws JSONException{
+    private static int getInt(String tagName, JSONObject jsonObject) throws JSONException {
         return jsonObject.getInt(tagName);
     }
 }
