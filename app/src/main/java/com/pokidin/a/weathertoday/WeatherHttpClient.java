@@ -49,7 +49,8 @@ public class WeatherHttpClient {
         } finally {
             try {
                 inputStream.close();
-            } catch (Throwable throwable) {
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
             }
             try {
                 connection.disconnect();
@@ -64,10 +65,9 @@ public class WeatherHttpClient {
         InputStream inputStream = null;
 
         try {
-            connection = (HttpURLConnection) new URL(IMG_URL + code).openConnection();
+            connection = (HttpURLConnection) new URL(IMG_URL + code + ".png").openConnection();
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
-            connection.setDoOutput(true);
             connection.connect();
             Log.d(TAG, "ImageURLConnection connected");
 
@@ -75,9 +75,10 @@ public class WeatherHttpClient {
             byte[] buffer = new byte[1024];
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-            while (inputStream.read() != -1) {
+            while (inputStream.read(buffer) != -1) {
                 baos.write(buffer);
             }
+
             return baos.toByteArray();
         } catch (IOException ioe) {
             Log.e(TAG, ioe.toString());
@@ -85,7 +86,8 @@ public class WeatherHttpClient {
         } finally {
             try {
                 inputStream.close();
-            } catch (Throwable throwable) {
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
             }
             try {
                 connection.disconnect();

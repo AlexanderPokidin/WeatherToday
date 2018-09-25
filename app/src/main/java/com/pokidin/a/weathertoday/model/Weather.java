@@ -6,8 +6,6 @@ public class Weather {
     public CurrentCondition currentCondition = new CurrentCondition();
     public Temperature temperature = new Temperature();
     public Wind wind = new Wind();
-    public Rain rain = new Rain();
-    public Snow snow = new Snow();
     public Clouds clouds = new Clouds();
 
     public byte[] iconData;
@@ -123,48 +121,6 @@ public class Weather {
         }
     }
 
-    public class Rain {
-        private String time;
-        private float ammount;
-
-        public String getTime() {
-            return time;
-        }
-
-        public void setTime(String time) {
-            this.time = time;
-        }
-
-        public float getAmmount() {
-            return ammount;
-        }
-
-        public void setAmmount(float ammount) {
-            this.ammount = ammount;
-        }
-    }
-
-    public class Snow {
-        private String time;
-        private float ammount;
-
-        public String getTime() {
-            return time;
-        }
-
-        public void setTime(String time) {
-            this.time = time;
-        }
-
-        public float getAmmount() {
-            return ammount;
-        }
-
-        public void setAmmount(float ammount) {
-            this.ammount = ammount;
-        }
-    }
-
     public class Clouds {
         private int perc;
 
@@ -176,6 +132,4 @@ public class Weather {
             this.perc = perc;
         }
     }
-
-
 }

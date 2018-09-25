@@ -19,7 +19,6 @@ public class JSONWeatherParser {
 
         JSONObject jsonObject = new JSONObject(data);
         Location location = new Location();
-        Log.d(TAG, "Location is: " + location);
 
         JSONObject coordObject = getObject("coord", jsonObject);
         location.setLatitude(getFloat("lat", coordObject));
