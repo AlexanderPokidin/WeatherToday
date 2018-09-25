@@ -11,6 +11,7 @@ import com.pokidin.a.weathertoday.model.Weather;
 import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "DebugRun";
 
     private TextView cityText;
     private TextView condDescr;
