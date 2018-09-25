@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 weather = JSONWeatherParser.getWeather(data);
-                weather.iconData = new WeatherHttpClient().getImage(weather.currentCondition.getIcon());
+//                weather.iconData = new WeatherHttpClient().getImage(weather.currentCondition.getIcon());
             } catch (JSONException je) {
                 je.printStackTrace();
             }
