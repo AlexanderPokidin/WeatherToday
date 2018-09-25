@@ -29,12 +29,12 @@ public class WeatherHttpClient {
             connection.connect();
             Log.d(TAG, "HttpURLConnection connected");
 
-            StringBuffer stringBuffer = new StringBuffer();
+            StringBuilder stringBuffer = new StringBuilder();
             inputStream = connection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
-                stringBuffer.append(line + "\r\n");
+                stringBuffer.append(line).append("\r\n");
             }
 
             inputStream.close();
@@ -59,40 +59,40 @@ public class WeatherHttpClient {
         return null;
     }
 
-//    public byte[] getImage(String code) {
-//        HttpURLConnection connection = null;
-//        InputStream inputStream = null;
-//
-//        try {
-//            connection = (HttpURLConnection) new URL(IMG_URL + code + ".png").openConnection();
-//            connection.setRequestMethod("GET");
-//            connection.setDoInput(true);
-//            connection.setDoOutput(true);
-//            connection.connect();
-//            Log.d(TAG, "ImageURLConnection connected");
-//
-//            inputStream = connection.getInputStream();
-//            byte[] buffer = new byte[1024];
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//
-//            while (inputStream.read() != -1) {
-//                baos.write(buffer);
-//            }
-//            return baos.toByteArray();
-//        } catch (IOException ioe) {
-//            Log.e(TAG, ioe.toString());
-//            ioe.printStackTrace();
-//        } finally {
-//            try {
-//                inputStream.close();
-//            } catch (Throwable throwable) {
-//            }
-//            try {
-//                connection.disconnect();
-//            } catch (Throwable throwable) {
-//            }
-//        }
-//        Log.d(TAG, "ImageURLConnection disconnected");
-//        return null;
-//    }
+    public byte[] getImage(String code) {
+        HttpURLConnection connection = null;
+        InputStream inputStream = null;
+
+        try {
+            connection = (HttpURLConnection) new URL(IMG_URL + code).openConnection();
+            connection.setRequestMethod("GET");
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.connect();
+            Log.d(TAG, "ImageURLConnection connected");
+
+            inputStream = connection.getInputStream();
+            byte[] buffer = new byte[1024];
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            while (inputStream.read() != -1) {
+                baos.write(buffer);
+            }
+            return baos.toByteArray();
+        } catch (IOException ioe) {
+            Log.e(TAG, ioe.toString());
+            ioe.printStackTrace();
+        } finally {
+            try {
+                inputStream.close();
+            } catch (Throwable throwable) {
+            }
+            try {
+                connection.disconnect();
+            } catch (Throwable throwable) {
+            }
+        }
+        Log.d(TAG, "ImageURLConnection disconnected");
+        return null;
+    }
 }

@@ -25,11 +25,12 @@ public class JSONWeatherParser {
         location.setLatitude(getFloat("lat", coordObject));
         location.setLongitude(getFloat("lon", coordObject));
 
+        location.setCity(getString("name", jsonObject));
+        Log.d(TAG, "setCity: " + getString("name", jsonObject));
+
         JSONObject sysObject = getObject("sys", jsonObject);
         location.setCountry(getString("country", sysObject));
         Log.d(TAG, "setCountry: " + getString("country", sysObject));
-//        location.setCity(getString("city", sysObject));
-//        Log.d(TAG, "setCity: " + getString("city", sysObject));
 
         location.setSunrise(getInt("sunrise", sysObject));
         location.setSunset(getInt("sunset", sysObject));
@@ -53,14 +54,14 @@ public class JSONWeatherParser {
         weather.temperature.setTemp(getFloat("temp", mainObject));
         Log.d(TAG, "Parsing mainObject finished");
 
-//        JSONObject windObject = getObject("wind", jsonObject);
-//        weather.wind.setSpeed(getFloat("speed", windObject));
-//        weather.wind.setDeg(getFloat("deg", windObject));
-//        Log.d(TAG, "Parsing windObject finished");
-
         JSONObject cloudObject = getObject("clouds", jsonObject);
         weather.clouds.setPerc(getInt("all", cloudObject));
         Log.d(TAG, "Parsing cloudObject finished");
+
+        JSONObject windObject = getObject("wind", jsonObject);
+        weather.wind.setSpeed(getFloat("speed", windObject));
+        weather.wind.setDeg(getFloat("deg", windObject));
+        Log.d(TAG, "Parsing windObject finished");
 
         Log.d(TAG, "Weather is: " + weather);
         return weather;

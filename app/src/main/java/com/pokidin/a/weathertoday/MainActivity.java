@@ -1,5 +1,8 @@
 package com.pokidin.a.weathertoday;
 
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,11 +55,28 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 weather = JSONWeatherParser.getWeather(data);
-//                weather.iconData = new WeatherHttpClient().getImage(weather.currentCondition.getIcon());
+                weather.iconData = new WeatherHttpClient().getImage(weather.currentCondition.getIcon());
             } catch (JSONException je) {
                 je.printStackTrace();
             }
             return weather;
+        }
+
+        @Override
+        protected void onPostExecute(Weather weather) {
+            super.onPostExecute(weather);
+            if (weather.iconData != null && weather.iconData.length > 0) {
+                Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
+                imgView.setImageBitmap(img);
+            }
+
+            cityText.setText(String.format("%s, %s", weather.location.getCity(), weather.location.getCountry()));
+            condDescr.setText(String.format("%s (%s)", weather.currentCondition.getCondition(), weather.currentCondition.getDescr()));
+            temp.setText(String.format("%d°C", Math.round((weather.temperature.getTemp() - 32)/1.8)));
+            hum.setText(String.format("%s%%", weather.currentCondition.getHumidity()));
+            press.setText(String.format("%s hPa", weather.currentCondition.getPressure()));
+            windSpeed.setText(String.format("%s mps", weather.wind.getSpeed()));
+            windDeg.setText(String.format("%s°", weather.wind.getDeg()));
         }
     }
 }
