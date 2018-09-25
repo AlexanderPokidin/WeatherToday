@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String city = "Kyiv";
+        String city = "London,UK";
 
         cityText = findViewById(R.id.cityText);
         condDescr = findViewById(R.id.condDescr);
