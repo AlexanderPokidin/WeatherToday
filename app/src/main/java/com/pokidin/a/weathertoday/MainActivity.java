@@ -1,6 +1,5 @@
 package com.pokidin.a.weathertoday;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String city = "London,UK";
+        String city = "Kiev,UA";
 
         cityText = findViewById(R.id.cityText);
         condDescr = findViewById(R.id.condDescr);
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
             cityText.setText(String.format("%s, %s", weather.location.getCity(), weather.location.getCountry()));
             condDescr.setText(String.format("%s (%s)", weather.currentCondition.getCondition(), weather.currentCondition.getDescr()));
-            temp.setText(String.format("%d°C", Math.round((weather.temperature.getTemp() - 32)/1.8)));
+            temp.setText(String.format("%d°C", Math.round((weather.temperature.getTemp() - 273.15))));
             hum.setText(String.format("%s%%", weather.currentCondition.getHumidity()));
             press.setText(String.format("%s hPa", weather.currentCondition.getPressure()));
             windSpeed.setText(String.format("%s mps", weather.wind.getSpeed()));
