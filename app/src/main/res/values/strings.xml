@@ -3,4 +3,5 @@
     <string name="wind">Wind</string>
     <string name="humidity">Humidity</string>
     <string name="pressure">Pressure</string>
+    <string name="take_umbrella">Do I need to take an umbrella?</string>
 </resources>
